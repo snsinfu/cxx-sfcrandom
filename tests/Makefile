@@ -26,7 +26,10 @@ OBJECTS = \
   test_sfc16.o \
   test_sfc32.o \
   test_sfc64.o \
-  test_sfc64_features.o
+  test_sfc64_features.o \
+  integration/test_independent_bits_engine.o \
+  integration/test_uniform_int_distribution.o \
+  integration/test_uniform_real_distribution.o
 
 ARTIFACTS = \
   $(OBJECTS) \
@@ -49,3 +52,6 @@ test_sfc16.o: ../include/sfc.hpp
 test_sfc32.o: ../include/sfc.hpp
 test_sfc64.o: ../include/sfc.hpp
 test_sfc64_features.o: ../include/sfc.hpp
+integration/test_independent_bits_engine.o: ../include/sfc.hpp
+integration/test_uniform_int_distribution.o: ../include/sfc.hpp
+integration/test_uniform_real_distribution.o: ../include/sfc.hpp
