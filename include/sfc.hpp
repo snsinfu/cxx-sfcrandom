@@ -66,7 +66,7 @@ namespace cxx
             void init(std::uint64_t seed_val) noexcept;
 
             // init_seq initializes state variables using words read from given
-            // sequence.
+            // sequence. Lower bits are taken first.
             template<typename SeedSeq>
             void init_seq(SeedSeq& seed_seq);
         };
