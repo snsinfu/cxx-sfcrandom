@@ -72,10 +72,10 @@ TEST_CASE("sfc64 - produces correct sequence with given seed sequence")
     seed_seq seed;
     cxx::sfc64 engine{seed};
 
-    CHECK(engine() == 0xbf02520aa3420ec6);
-    CHECK(engine() == 0x9b58651655ebf547);
-    CHECK(engine() == 0x1d2661c5b522c8e1);
-    CHECK(engine() == 0xc664af4dffeb721f);
+    CHECK(engine() == 0x62d88ea4f8e52534);
+    CHECK(engine() == 0xed8152736a1e06d8);
+    CHECK(engine() == 0xab437fa78f703b0c);
+    CHECK(engine() == 0xa4a705dd41bc312f);
 }
 
 TEST_CASE("sfc64 - produces uniformly distributed numbers")

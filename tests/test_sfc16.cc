@@ -84,10 +84,10 @@ TEST_CASE("sfc16 - produces correct sequence with given seed sequence")
     seed_seq seed;
     cxx::sfc16 engine{seed};
 
-    CHECK(engine() == 0xfe29);
-    CHECK(engine() == 0x169d);
-    CHECK(engine() == 0xd879);
-    CHECK(engine() == 0x72ba);
+    CHECK(engine() == 0xcded);
+    CHECK(engine() == 0x5ae9);
+    CHECK(engine() == 0x3111);
+    CHECK(engine() == 0xa4a4);
 }
 
 TEST_CASE("sfc16 - produces uniformly distributed numbers")
