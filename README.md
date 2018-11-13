@@ -5,7 +5,6 @@
 [![Boost License][license-badge]][license-url]
 
 [PractRand][practrand]'s sfc16/32/64 random number generators adapted to C++11.
-[Download][header].
 
 ```c++
 #include <iostream>
@@ -29,8 +28,20 @@ int main()
 [license-url]: https://raw.githubusercontent.com/snsinfu/cxx-sfcrandom/master/LICENSE.txt
 [travis-badge]: https://travis-ci.org/snsinfu/cxx-sfcrandom.svg?branch=master
 [travis-url]: https://travis-ci.org/snsinfu/cxx-sfcrandom
-[header]: https://raw.githubusercontent.com/snsinfu/cxx-sfcrandom/master/include/sfc.hpp
 [practrand]: http://pracrand.sourceforge.net/
+
+## Usage
+
+Download and include [sfc.hpp][header]. It exports three random number engines:
+
+- `cxx::sfc16`
+- `cxx::sfc32`
+- `cxx::sfc64`
+
+sfc64 is the recommended one. It's a small, fast and statistically good engine.
+You can use it as a drop-in replacement for the standard engines like `std::mt19937`.
+
+[header]: https://raw.githubusercontent.com/snsinfu/cxx-sfcrandom/master/include/sfc.hpp
 
 ## Testing
 
