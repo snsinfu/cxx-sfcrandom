@@ -335,14 +335,6 @@ namespace cxx
             discard(initial_round_1);
         }
 
-        void init_state(result_type s1, result_type s2, result_type s3) noexcept
-        {
-            state_.a = s1;
-            state_.b = s2;
-            state_.c = s3;
-            state_.counter = 1;
-        }
-
         // Invocation operator advances the engine state and returns the
         // generated value.
         inline result_type operator()() noexcept
