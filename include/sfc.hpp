@@ -325,6 +325,7 @@ namespace cxx
         void seed(SeedSeq& seed_seq)
         {
             state_.init_seq(seed_seq);
+            discard(initial_round_3);
         }
 
         // seed64 seeds the engine using given 64-bit value using the PractRand
