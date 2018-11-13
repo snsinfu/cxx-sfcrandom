@@ -167,7 +167,7 @@ namespace cxx
 
             // Constructor saves the stream flags.
             explicit stream_restorer(stream_type& stream)
-                : stream_{stream}, flags_{stream.flags()}, fill_{stream.fill()}
+                : stream_(stream), flags_(stream.flags()), fill_(stream.fill())
             {
             }
 
