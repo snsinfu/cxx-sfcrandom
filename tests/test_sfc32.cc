@@ -64,6 +64,34 @@ TEST_CASE("sfc32 - produces correct sequence with given 32-bit seed")
     CHECK(engine() == 0xd953c25b);
 }
 
+TEST_CASE("sfc32 - produces correct sequence with given seed sequence")
+{
+    struct seed_seq
+    {
+        void generate(std::uint32_t* rb, std::uint32_t* re)
+        {
+            // a = 0x89f6963f
+            *rb++ = 0x89f6963f;
+
+            // b = 0x4b0068dd
+            *rb++ = 0x4b0068dd;
+
+            // c = 0xbee3dbea
+            *rb++ = 0xbee3dbea;
+
+            CHECK(rb == re);
+        }
+    };
+
+    seed_seq seed;
+    cxx::sfc32 engine{seed};
+
+    CHECK(engine() == 0xd4f6ff1d);
+    CHECK(engine() == 0x0128a425);
+    CHECK(engine() == 0x9b1f72c2);
+    CHECK(engine() == 0xfa823888);
+}
+
 TEST_CASE("sfc32 - produces uniformly distributed numbers")
 {
     using engine_type = cxx::sfc32;

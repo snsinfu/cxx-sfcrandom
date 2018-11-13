@@ -5,14 +5,31 @@
 [![Boost License][license-badge]][license-url]
 
 [PractRand][practrand]'s sfc16/32/64 random number generators adapted to C++11.
-Download single header: [sfc.hpp][header].
+[Download][header].
+
+```c++
+#include <iostream>
+#include <random>
+#include <sfc.hpp>
+
+int main()
+{
+    cxx::sfc64 engine;
+    std::normal_distribution<double> normal;
+
+    double x = normal(engine);
+    double y = normal(engine);
+
+    std::cout << x << '\t' << y << '\n';
+}
+```
 
 [cxx-badge]: https://img.shields.io/badge/C%2B%2B-11-orange.svg
 [license-badge]: https://img.shields.io/badge/license-Boost-blue.svg
-[license-url]: https://raw.githubusercontent.com/snsinfu/cxx-sfc/master/LICENSE.txt
-[travis-badge]: https://travis-ci.org/snsinfu/cxx-sfc.svg?branch=master
-[travis-url]: https://travis-ci.org/snsinfu/cxx-sfc
-[header]: https://raw.githubusercontent.com/snsinfu/cxx-sfc/master/include/sfc.hpp
+[license-url]: https://raw.githubusercontent.com/snsinfu/cxx-sfcrandom/master/LICENSE.txt
+[travis-badge]: https://travis-ci.org/snsinfu/cxx-sfcrandom.svg?branch=master
+[travis-url]: https://travis-ci.org/snsinfu/cxx-sfcrandom
+[header]: https://raw.githubusercontent.com/snsinfu/cxx-sfcrandom/master/include/sfc.hpp
 [practrand]: http://pracrand.sourceforge.net/
 
 ## Testing

@@ -64,6 +64,11 @@ namespace cxx
 
             // init initializes state variables using given 64-bit seed.
             void init(std::uint64_t seed_val) noexcept;
+
+            // init_seq initializes state variables using words read from given
+            // sequence.
+            template<typename SeedSeq>
+            void init_seq(SeedSeq& seed_seq);
         };
 
         template<>
@@ -90,6 +95,45 @@ namespace cxx
             a = seed_val;
             b = seed_val;
             c = seed_val;
+            counter = 1;
+        }
+
+        template<>
+        template<typename SeedSeq>
+        inline void state<std::uint16_t>::init_seq(SeedSeq& seed_seq)
+        {
+            std::uint32_t uints[2];
+            seed_seq.generate(uints, uints + 2);
+
+            a = std::uint16_t(uints[0]);
+            b = std::uint16_t(uints[0] >> 16);
+            c = std::uint16_t(uints[1]);
+            counter = 1;
+        }
+
+        template<>
+        template<typename SeedSeq>
+        inline void state<std::uint32_t>::init_seq(SeedSeq& seed_seq)
+        {
+            std::uint32_t uints[3];
+            seed_seq.generate(uints, uints + 3);
+
+            a = uints[0];
+            b = uints[1];
+            c = uints[2];
+            counter = 1;
+        }
+
+        template<>
+        template<typename SeedSeq>
+        inline void state<std::uint64_t>::init_seq(SeedSeq& seed_seq)
+        {
+            std::uint32_t uints[6];
+            seed_seq.generate(uints, uints + 6);
+
+            a = std::uint64_t(uints[0]) << 32 | uints[1];
+            b = std::uint64_t(uints[2]) << 32 | uints[3];
+            c = std::uint64_t(uints[4]) << 32 | uints[5];
             counter = 1;
         }
 
@@ -280,7 +324,7 @@ namespace cxx
         >
         void seed(SeedSeq& seed_seq)
         {
-            throw &seed_seq; // FIXME: Not implemented
+            state_.init_seq(seed_seq);
         }
 
         // seed64 seeds the engine using given 64-bit value using the PractRand
@@ -289,6 +333,14 @@ namespace cxx
         {
             state_.init(seed_val);
             discard(initial_round_1);
+        }
+
+        void init_state(result_type s1, result_type s2, result_type s3) noexcept
+        {
+            state_.a = s1;
+            state_.b = s2;
+            state_.c = s3;
+            state_.counter = 1;
         }
 
         // Invocation operator advances the engine state and returns the

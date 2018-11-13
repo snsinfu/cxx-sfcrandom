@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <iomanip>
 #include <iterator>
+#include <random>
 #include <sstream>
 #include <vector>
 
@@ -21,6 +22,18 @@ TEST_CASE("sfc64 - is copy constructible and copy assignable")
     cxx::sfc64 engine;
     cxx::sfc64 copy = engine;
     copy = engine;
+}
+
+TEST_CASE("sfc64 - is constructible with a seed value")
+{
+    std::uint64_t seed = 0;
+    cxx::sfc64 engine{seed};
+}
+
+TEST_CASE("sfc64 - is constructible with a seed sequence")
+{
+    std::seed_seq seed;
+    cxx::sfc64 engine{seed};
 }
 
 TEST_CASE("sfc64 - is equality comparable")
@@ -60,6 +73,18 @@ TEST_CASE("sfc64::seed - reseeds the engine")
     cxx::sfc64 expected{seed};
     cxx::sfc64 reseeded;
     reseeded.seed(seed);
+
+    CHECK(reseeded == expected);
+}
+
+TEST_CASE("sfc64::seed - reseeds the engine with a seed sequence")
+{
+    std::seed_seq seed1;
+    cxx::sfc64 expected{seed1};
+
+    std::seed_seq seed2;
+    cxx::sfc64 reseeded;
+    reseeded.seed(seed2);
 
     CHECK(reseeded == expected);
 }
